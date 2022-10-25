@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native';
 import MealItem from '../components/MealItem';
 import { MEALS, CATEGORIES } from '../data/dummy-data';
 
@@ -23,6 +23,7 @@ const MealsOverviewScreen = ({ route, navigation }) => {
   const renderMealItem = (itemData) => {
     const item = itemData.item;
     const mealItemProps = {
+      id: item.id,
       title: item.title,
       imageUrl: item.imageUrl,
       affordability: item.affordability,
@@ -34,11 +35,19 @@ const MealsOverviewScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        KeyExtractor={(item) => item.id}
-        renderItem={renderMealItem}
-      />
+      <Pressable
+        android_ripple={{ color: '#ccc' }}
+        style={({ pressed }) => [
+          styles.button,
+          pressed ? styles.buttonPressed : null,
+        ]}
+      >
+        <FlatList
+          data={displayedMeals}
+          KeyExtractor={(item) => item.id}
+          renderItem={renderMealItem}
+        />
+      </Pressable>
     </View>
   );
 };
