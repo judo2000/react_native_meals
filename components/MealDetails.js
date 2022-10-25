@@ -6,18 +6,18 @@ const MealDetails = ({
   duration,
   complexity,
   affordability,
+  style,
+  textStyle,
 }) => {
   return (
-    <View>
-      <View>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
-        <Text style={styles.title}>{title}</Text>
-      </View>
-      <View style={styles.details}>
-        <Text style={styles.detailItem}>{duration} m</Text>
-        <Text style={styles.detailItem}>{complexity.toUpperCase()}</Text>
-        <Text style={styles.detailItem}>{affordability.toUpperCase()}</Text>
-      </View>
+    <View style={[styles.details, style]}>
+      <Text style={[styles.detailItem, textStyle]}>{duration} m</Text>
+      <Text style={[styles.detailItem, textStyle]}>
+        {complexity.toUpperCase()}
+      </Text>
+      <Text style={[styles.detailItem, textStyle]}>
+        {affordability.toUpperCase()}
+      </Text>
     </View>
   );
 };
@@ -25,6 +25,21 @@ const MealDetails = ({
 export default MealDetails;
 
 const styles = StyleSheet.create({
+  mealItem: {
+    margin: 16,
+    borderRadius: 8,
+    overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
+    backgroundColor: 'white',
+    elevation: 4,
+    shadowColor: 'black',
+    shadowOpacity: 0.35,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 16,
+  },
+  innerContainer: {
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
   image: {
     width: '100%',
     height: 200,

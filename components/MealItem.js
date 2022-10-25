@@ -33,6 +33,9 @@ const MealItem = ({
         onPress={selectMealItemHandler}
       >
         <View style={styles.innerContainer}>
+          <Image source={{ uri: imageUrl }} style={styles.image} />
+          <Text style={styles.title}>{title}</Text>
+
           <MealDetails
             imageUrl={imageUrl}
             title={title}
@@ -65,5 +68,15 @@ const styles = StyleSheet.create({
   innerContainer: {
     borderRadius: 8,
     overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: 200,
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 8,
   },
 });
